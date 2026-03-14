@@ -1,20 +1,32 @@
 package com.yusriamir.ascrashcourse
 
 import android.os.Bundle
+import android.widget.TextView
+import android.widget.Button
+import android.widget.EditText
+
+
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.yusriamir.ascrashcourse.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+
+//        var tvText = findViewById<TextView>(R.id.tvText)
+//        var btnSubmit = findViewById<Button>(R.id.btnSubmit)
+//        var etText = findViewById<EditText>(R.id.etText)
+
+        binding.btnSubmit.setOnClickListener {
+            var etString = binding.etText.text.toString().trim()
+            binding.tvText.text = "Hello, $etString"
     }
+}
 }
